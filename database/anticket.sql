@@ -28,6 +28,7 @@ BEGIN
 	   id INT AUTO_INCREMENT PRIMARY KEY,
 	   name VARCHAR(50) NOT NULL,
 	   nik VARCHAR(25) NOT NULL UNIQUE,
+	   email VARCHAR(50) NOT NULL UNIQUE,
 	   password VARCHAR(255) NOT NULL,
 	   role ENUM('user','worker', 'admin', 'supervisor', 'root') NOT NULL DEFAULT 'worker',
 	   id_chat_telegram VARCHAR(255) NULL,
@@ -113,20 +114,20 @@ DELIMITER //
 CREATE PROCEDURE `seedUser`()
 BEGIN
 
-	INSERT INTO users (name, nik, role, password, created_at, updated_at)
-	VALUES ('Root', 12345, 'root', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
+	VALUES ('Root', 12345, 'root@example.com', 'root', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 
-	INSERT INTO users (name, nik, role, password, created_at, updated_at)
-	VALUES ('Worker', 67891, 'worker', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
+	VALUES ('Worker', 67891, 'worker@example.com', 'worker', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 
-	INSERT INTO users (name, nik, role, password, created_at, updated_at)
-	VALUES ('Admin', 78910, 'admin', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
+	VALUES ('Admin', 78910, 'admin@example.com', 'admin', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
-	INSERT INTO users (name, nik, role, password, created_at, updated_at)
-	VALUES ('Supervisor', 89101, 'supervisor', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
+	VALUES ('Supervisor', 89101, 'supervisor@example.com', 'supervisor', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
-	INSERT INTO users (name, nik, role, password, created_at, updated_at)
-	VALUES ('User', 91011, 'user', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
+	VALUES ('User', 91011, 'user@example.com', 'user', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
 END//
 DELIMITER ;
