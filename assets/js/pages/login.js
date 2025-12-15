@@ -1,17 +1,13 @@
 function submit() {
-    let name = $("#name").val();
-    let email = $("#email").val();
     let nik = $("#nik").val();
     let password = $("#password").val();
 
     $.ajax({
         type: "POST",
-        url: "/auth/b_register",
+        url: "/auth/b_login",
         data: {
-            name: name,
-            email: email,
             nik: nik,
-            password: password 
+            password: password
         },
         success: function(response) {
             let res = JSON.parse(response);
@@ -20,11 +16,12 @@ function submit() {
                     title: 'Berhasil',
                     text: res.message,
                     icon: 'success',
-                    allowOutsideClick: false,  
+                    allowOutsideClick: false,
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/auth/login";
+                        let role = res.role;
+                        window.location.href = "/"+role;
                     }
                 });
             } else {
@@ -41,7 +38,7 @@ function submit() {
         },
         error: function(xhr, status, error) {
             console.error("AJAX Error:", error);
-            Swal.fire("Gagal", "Terjadi kesalahan saat registrasi.", "error");
+            Swal.fire('Error', 'Terjadi kesalahan saat login.', 'error');
         }
     });
 }

@@ -52,3 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'auth/v_login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['auth/register'] = 'auth/v_register';
+$route['auth/login'] = 'auth/v_login';

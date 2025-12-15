@@ -27,5 +27,7 @@
     }
   </script>
   <script src="<?= base_url('assets/js/argon-dashboard.min.js?v=2.1.0') ?>"></script>
+  <script src="<?= base_url('assets/js/jquery.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/js/swal2.min.js'); ?>"></script>
 </body>
 </html>
