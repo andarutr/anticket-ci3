@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram name="Page-1" id="X6o776R-NZ2GFwNtyJVw">
-    <mxGraphModel dx="1453" dy="895" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="872" dy="537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -117,7 +117,7 @@
             <mxRectangle width="150" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AAeBfvkg2F-cKYjL900_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.999;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dDqAF2zDHV4a0jEVl2MM-155" target="dDqAF2zDHV4a0jEVl2MM-363">
+        <mxCell id="AAeBfvkg2F-cKYjL900_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.999;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="dDqAF2zDHV4a0jEVl2MM-155" target="dDqAF2zDHV4a0jEVl2MM-363" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1130" y="749.9999999999998" as="targetPoint" />
             <Array as="points">
@@ -716,7 +716,7 @@
             <mxRectangle width="30" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dDqAF2zDHV4a0jEVl2MM-359" value="&lt;b&gt;role&lt;/b&gt; enum(worker, admin, supervisor, root)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="dDqAF2zDHV4a0jEVl2MM-357" vertex="1">
+        <mxCell id="dDqAF2zDHV4a0jEVl2MM-359" value="&lt;b&gt;role&lt;/b&gt; enum(user, worker, admin, supervisor, root)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="dDqAF2zDHV4a0jEVl2MM-357" vertex="1">
           <mxGeometry x="30" width="300" height="30" as="geometry">
             <mxRectangle width="300" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -840,7 +840,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="AAeBfvkg2F-cKYjL900_-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.005;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dDqAF2zDHV4a0jEVl2MM-374" target="dDqAF2zDHV4a0jEVl2MM-278">
+        <mxCell id="AAeBfvkg2F-cKYjL900_-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.005;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="dDqAF2zDHV4a0jEVl2MM-374" target="dDqAF2zDHV4a0jEVl2MM-278" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
