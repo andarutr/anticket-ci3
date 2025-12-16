@@ -89,4 +89,11 @@ class Auth extends CI_Controller {
             show_404();
         }
     }
+
+    public function b_logout()
+    {
+        $this->session->sess_destroy();
+
+        redirect('auth/login', 'refresh');
+    }
 }

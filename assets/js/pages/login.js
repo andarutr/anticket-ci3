@@ -21,7 +21,7 @@ function submit() {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         let role = res.role;
-                        window.location.href = "/"+role;
+                        window.location.href = "/"+role+"/dashboard";
                     }
                 });
             } else {
