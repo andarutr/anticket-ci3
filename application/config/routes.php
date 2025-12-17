@@ -56,3 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['auth/register'] = 'auth/v_register';
 $route['auth/login'] = 'auth/v_login';
 $route['auth/logout'] = 'auth/b_logout';
+$route['user/ticket/request-system'] = 'user/ticket/requestsystem/index';
+$route['user/ticket/request-system/store'] = 'user/ticket/requestsystem/store';
