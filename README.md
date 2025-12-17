@@ -24,3 +24,9 @@ Penjelasan:
 ## Config
 - Import SQL file yang terletak di folder database.
 - Ketik perintah `CALL migrationAll()` dan `CALL seedUser()`
+
+## Plugin / Libraries
+- jQuery
+- Sweet Alert 2
+- QuillJS
+- Select2
