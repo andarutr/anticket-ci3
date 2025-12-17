@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	$("#priority").select2({ theme: 'bootstrap-5' });
-	$("#dept").select2({ theme: 'bootstrap-5' });
-	$("#pic_name").select2({ theme: 'bootstrap-5' });
+	$("#priority").select2();
+	$("#dept").select2();
+	$("#pic_name").select2();
 
 	const quill = new Quill('#description', {
 		theme: 'snow'

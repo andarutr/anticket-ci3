@@ -34,9 +34,11 @@
 								<label>PIC</label>
 								<select name="pic_name" class="form-select" id="pic_name" required>
 									<option value="">Pilih</option>
-									<option value="Andi">Andi</option>
-									<option value="Budi">Budi</option>
-									<option value="Siti">Siti</option>
+									<?php foreach ($users as $user): ?>
+                                        <option value="<?= $user->name ?>">
+                                            <?= $user->name ?>
+                                        </option>
+                                    <?php endforeach; ?>
 								</select>
 							</div>
 						</div>
