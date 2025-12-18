@@ -96,7 +96,7 @@ class RequestSystem extends CI_Controller {
             $date_part = date('ymd');
             $last_ticket = $this->db->query("SELECT MAX(id) as last_id FROM tickets")->row()->last_id;
             $counter = str_pad(($last_ticket ? $last_ticket : 0) + 1, 3, '0', STR_PAD_LEFT);
-            $no_ticket = "ANTRS{$date_part}{$counter}";
+            $no_ticket = "RS{$date_part}{$counter}";
 
             $query_tickets = "INSERT INTO tickets (system_id, no_ticket, category, priority, status, description, requestor_name, requestor_nik, requested_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
             $result_ticket = $this->db->query($query_tickets, [
