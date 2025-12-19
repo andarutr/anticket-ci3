@@ -3,7 +3,7 @@
 	<div class="sidenav-header">
 		<i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
 			aria-hidden="true" id="iconSidenav"></i>
-		<a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+		<a class="navbar-brand m-0" href="#"
 			target="_blank">
 			<img src="<?= base_url('assets/img/logo.png'); ?>" width="26px" height="26px" class="navbar-brand-img h-100"
 				alt="main_logo">
@@ -60,6 +60,26 @@
 							<i class="bi-calendar-check text-dark text-sm opacity-10"></i>
 						</div>
 						<span class="nav-link-text ms-1">Request Meeting</span>
+					</a>
+				</li>
+			<?php endif; ?>
+			<?php if($this->session->userdata('role') == 'supervisor'): ?>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= site_url('/supervisor/dashboard'); ?>">
+						<div
+							class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="bi bi-rocket-takeoff text-dark text-sm opacity-10"></i>
+						</div>
+						<span class="nav-link-text ms-1">Dashboard</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= site_url('/supervisor/ticket'); ?>">
+						<div
+							class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="bi-server text-dark text-sm opacity-10"></i>
+						</div>
+						<span class="nav-link-text ms-1">Tickets</span>
 					</a>
 				</li>
 			<?php endif; ?>

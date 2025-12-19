@@ -18,6 +18,8 @@
   <script src="<?= base_url('assets/js/select2.min.js'); ?>"></script>
   <link rel="stylesheet" href="<?= base_url('assets/css/quill.min.css'); ?>">
   <script src="<?= base_url('assets/js/quill.min.js'); ?>"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/css/datatable.min.css'); ?>">
+  <script src="<?= base_url('assets/js/datatable.min.js'); ?>"></script>
   <style>
     .select2-container {
       height: calc(1.5em + 0.75rem + 2px); /* Standar Bootstrap .form-control height */
