@@ -100,7 +100,27 @@ class Ticket extends CI_Controller {
         }
 
         $escaped_id = $this->db->escape($id);
-        $query = "SELECT id, priority, deadline FROM tickets WHERE id = $escaped_id LIMIT 1";
+        $query = "
+            SELECT 
+                t.id, 
+                t.system_id, 
+                t.no_ticket, 
+                t.category, 
+                t.urls, 
+                t.priority, 
+                t.status, 
+                t.description, 
+                t.deadline,
+                t.requestor_name,
+                t.requestor_nik,
+                t.requested_at,
+                s.name AS system_name 
+            FROM tickets t
+            LEFT JOIN systems s ON t.system_id = s.id 
+            WHERE t.id = $escaped_id
+            LIMIT 1
+        ";
+
         $result = $this->db->query($query);
 
         if ($result && $result->num_rows() > 0) {
