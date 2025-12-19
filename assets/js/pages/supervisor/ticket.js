@@ -1,4 +1,5 @@
 $("#table").DataTable({
+    ordering: false,
     ajax: {
         type: "GET",
         url: "/supervisor/ticket/getdata"

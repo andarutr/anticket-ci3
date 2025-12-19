@@ -22,6 +22,7 @@ class Ticket extends CI_Controller {
             FROM tickets t
             LEFT JOIN systems s ON t.system_id = s.id 
             WHERE t.status NOT IN ('reject','approved')
+            ORDER BY t.id DESC
         ";
 
         $data = $this->db->query($query)->result();
