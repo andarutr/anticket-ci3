@@ -21,7 +21,7 @@ class Ticket extends CI_Controller {
                 s.name AS system_name 
             FROM tickets t
             LEFT JOIN systems s ON t.system_id = s.id 
-            WHERE t.status != 'reject'
+            WHERE t.status NOT IN ('reject','approved')
         ";
 
         $data = $this->db->query($query)->result();
@@ -64,7 +64,7 @@ class Ticket extends CI_Controller {
              return;
         }
 
-        $update_query = "UPDATE tickets SET status = 'approve' WHERE id = $escaped_id";
+        $update_query = "UPDATE tickets SET status = 'approved' WHERE id = $escaped_id";
 
         $update_result = $this->db->query($update_query);
 
