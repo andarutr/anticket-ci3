@@ -20,6 +20,7 @@
                                         <th class="text-white">System</th>
                                         <th class="text-white">Type</th>
                                         <th class="text-white">Requestor</th>
+                                        <th class="text-white">Priority</th>
                                         <th class="text-white">Deadline</th>
                                         <th class="text-white">Status</th>
                                         <th class="text-white">Action</th>
@@ -35,6 +36,41 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Ticket</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm">
+          <input type="hidden" id="editTicketId">
+
+          <div class="mb-3">
+            <label for="editPriority" class="form-label">Priority</label>
+            <select class="form-select" id="editPriority" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="editDeadline" class="form-label">Deadline</label>
+            <input type="date" class="form-control" id="editDeadline" required>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
       </div>
     </div>
   </div>
