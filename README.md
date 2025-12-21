@@ -14,6 +14,7 @@ Penjelasan:
 - Setelah di mapping oleh admin, ticket akan masuk di backlog worker.
 - Worker melakukan set schedule dan mengerjakan ticket sesuai dengan schedule yang telah ditetapkan.
 - Ketika ticket sedang diproses, sudah selesai atau di reject maka otomatis user akan mendapatkan pemberitahuan melalui gmail.
+- Ticket dinyatakan selesai bila user sudah melakukan closing ticket.
 
 ## Role
 1. Root
@@ -38,4 +39,7 @@ Penjelasan:
 - Set Deadline & Priority Ticket.
 - Backlog Ticket.
 - Execution Ticket (In Progress, Done, Reject).
+- User closed ticket.
 - Analytic Perform Worker.
+- Chatting With Worker.
+- Management User.

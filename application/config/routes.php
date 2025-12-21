@@ -61,3 +61,4 @@ $route['user/ticket/request-feature'] = 'user/ticket/requestfeature/index';
 $route['user/ticket/report-bug'] = 'user/ticket/reportbug/index';
 $route['user/ticket/request-meeting'] = 'user/ticket/requestmeeting/index';
 $route['user/ticket/monitoring-ticket'] = 'user/ticket/monitoringticket/index';
+$route['user/ticket/close-ticket'] = 'user/ticket/closeticket/index';
