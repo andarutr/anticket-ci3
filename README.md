@@ -2,10 +2,10 @@
 Ticket Management System Menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL. Status: In Progress...
 
 ## ERD
-<img src="document/ERD Anticket.jpg">
+<img src="document/ERD Anticket.jpg" width="450">
 
 ## Flowchart
-<img src="document/Flowchart Anticket.jpg">
+<img src="document/Flowchart Anticket.jpg" width="450">
 Penjelasan:
 - User melakukan pembuatan ticket (request system / request feature / report bug / meeting).
 - Supervisor melakukan diskusi bersama manager dan worker atau stakeholder terkait.
@@ -30,3 +30,12 @@ Penjelasan:
 - Sweet Alert 2
 - QuillJS
 - Select2
+
+## Feature
+- Monitoring Ticket.
+- Create Ticket (Request System, Request Feature, Report Bug, Request Meeting).
+- Approval Ticket.
+- Set Deadline & Priority Ticket.
+- Backlog Ticket.
+- Execution Ticket (In Progress, Done, Reject).
+- Analytic Perform Worker.
