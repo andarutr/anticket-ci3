@@ -499,24 +499,44 @@ function reject(ticketId) {
         cancelButtonText: 'Batal'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: "/worker/ticket/updateToReject",
-                type: 'POST',
-                data: {
-                    id: ticketId
+            Swal.fire({
+                title: 'Alasan Reject',
+                text: 'Silakan masukkan alasan kenapa ticket ini direject.',
+                input: 'textarea',
+                inputPlaceholder: 'Contoh: Requirement tidak jelas...',
+                inputAttributes: {
+                    'aria-label': 'Masukkan alasan reject'
                 },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.status === 'success') {
-                        Swal.fire('Success!', response.message, 'success');
-                        $('#tableInprogress').DataTable().ajax.reload(null, false);
-                        $('#tableReject').DataTable().ajax.reload(null, false);
-                    } else {
-                        Swal.fire('Failed!', response.message, 'error');
+                showCancelButton: true,
+                confirmButtonText: 'Submit',
+                cancelButtonText: 'Batal',
+                inputValidator: (value) => {
+                    if (!value || !value.trim()) {
+                        return 'Alasan harus diisi!';
                     }
                 },
-                error: function(xhr, status, error) {
-                    Swal.fire('Error!', 'Error ketika update status.', 'error');
+                preConfirm: (reason) => {
+                    $.ajax({
+                        url: "/worker/ticket/updateToReject",
+                        type: 'POST',
+                        data: {
+                            id: ticketId,
+                            reason: reason.trim()
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire('Success!', response.message, 'success');
+                                $('#tableInprogress').DataTable().ajax.reload(null, false);
+                                $('#tableReject').DataTable().ajax.reload(null, false);
+                            } else {
+                                Swal.fire('Failed!', response.message, 'error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire('Error!', 'Error ketika update status.', 'error');
+                        }
+                    });
                 }
             });
         }

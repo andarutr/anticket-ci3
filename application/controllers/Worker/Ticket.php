@@ -300,6 +300,7 @@ class Ticket extends CI_Controller {
 	public function updateToReject()
 	{
 		$id = $this->input->post('id');
+		$reason = $this->input->post('reason');
 
 		if (!$id) {
 			echo json_encode(['status' => 'error', 'message' => 'Ticket ID harus ada']);
@@ -316,9 +317,10 @@ class Ticket extends CI_Controller {
 			status = ?, 
 			reject_name = ?,
 			reject_nik = ?,
-			reject_at = ?
+			reject_at = ?,
+			reject_reason = ?
 		WHERE id = ?";
-		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
+		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $reason, $id]);
 
 		if ($result) {
 			echo json_encode(['status' => 'success', 'message' => 'Berhasil reject ticket']);
