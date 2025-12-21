@@ -32,6 +32,134 @@ class Ticket extends CI_Controller {
 
         echo json_encode(['data' => $data]);
     }
+	
+	public function getDataList()
+    {
+		$nik = $this->session->userdata('nik');
+
+        $query = "
+            SELECT 
+                t.id, 
+                t.system_id, 
+                t.no_ticket, 
+                t.category, 
+                t.urls, 
+                t.priority, 
+                t.status, 
+                t.description, 
+                t.deadline,
+				t.execute_at,
+                t.requestor_name,
+                t.requestor_nik,
+                t.requested_at,
+				t.developer_nik,
+                s.name AS system_name 
+            FROM tickets t
+            LEFT JOIN systems s ON t.system_id = s.id 
+            WHERE t.status = 'listed' AND t.developer_nik = ?
+            ORDER BY t.id DESC
+        ";
+
+        $data = $this->db->query($query, [$nik])->result();
+
+        echo json_encode(['data' => $data]);
+    }
+	
+	public function getDataInProgress()
+    {
+		$nik = $this->session->userdata('nik');
+
+        $query = "
+            SELECT 
+                t.id, 
+                t.system_id, 
+                t.no_ticket, 
+                t.category, 
+                t.urls, 
+                t.priority, 
+                t.status, 
+                t.description, 
+                t.deadline,
+				t.execute_at,
+                t.requestor_name,
+                t.requestor_nik,
+                t.requested_at,
+				t.developer_nik,
+                s.name AS system_name 
+            FROM tickets t
+            LEFT JOIN systems s ON t.system_id = s.id 
+            WHERE t.status = 'on progress' AND t.developer_nik = ?
+            ORDER BY t.id DESC
+        ";
+
+        $data = $this->db->query($query, [$nik])->result();
+
+        echo json_encode(['data' => $data]);
+    }
+	
+	public function getDataDone()
+    {
+		$nik = $this->session->userdata('nik');
+
+        $query = "
+            SELECT 
+                t.id, 
+                t.system_id, 
+                t.no_ticket, 
+                t.category, 
+                t.urls, 
+                t.priority, 
+                t.status, 
+                t.description, 
+                t.deadline,
+				t.done_at,
+                t.requestor_name,
+                t.requestor_nik,
+                t.requested_at,
+				t.developer_nik,
+                s.name AS system_name 
+            FROM tickets t
+            LEFT JOIN systems s ON t.system_id = s.id 
+            WHERE t.status = 'done' AND t.developer_nik = ?
+            ORDER BY t.id DESC
+        ";
+
+        $data = $this->db->query($query, [$nik])->result();
+
+        echo json_encode(['data' => $data]);
+    }
+	
+	public function getDataReject()
+    {
+		$nik = $this->session->userdata('nik');
+
+        $query = "
+            SELECT 
+                t.id, 
+                t.system_id, 
+                t.no_ticket, 
+                t.category, 
+                t.urls, 
+                t.priority, 
+                t.status, 
+                t.description, 
+                t.deadline,
+				t.reject_at,
+                t.requestor_name,
+                t.requestor_nik,
+                t.requested_at,
+				t.developer_nik,
+                s.name AS system_name 
+            FROM tickets t
+            LEFT JOIN systems s ON t.system_id = s.id 
+            WHERE t.status = 'reject' AND t.developer_nik = ?
+            ORDER BY t.id DESC
+        ";
+
+        $data = $this->db->query($query, [$nik])->result();
+
+        echo json_encode(['data' => $data]);
+    }
 
 	public function index()
 	{
@@ -106,6 +234,96 @@ class Ticket extends CI_Controller {
 			echo json_encode(['status' => 'success', 'message' => 'Schedule updated successfully.']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Failed to update schedule.']);
+		}
+	}
+
+	public function updateToInProgress()
+	{
+		$id = $this->input->post('id');
+
+		if (!$id) {
+			echo json_encode(['status' => 'error', 'message' => 'Ticket ID harus ada']);
+			return;
+		}
+
+		$id = $this->security->xss_clean($id);
+		$new_status = 'on progress';
+		$nik = $this->session->userdata('nik');
+		$name = $this->session->userdata('name');
+		$at = date('Y-m-d H:i:s');
+
+		$query = "UPDATE tickets SET 
+			status = ?, 
+			in_progress_name = ?,
+			in_progress_nik = ?,
+			in_progress_at = ?
+		WHERE id = ?";
+		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
+
+		if ($result) {
+			echo json_encode(['status' => 'success', 'message' => 'Berhasil update status ticket']);
+		} else {
+			echo json_encode(['status' => 'error', 'message' => 'Gagal update status ticket.']);
+		}
+	}
+	
+	public function updateToDone()
+	{
+		$id = $this->input->post('id');
+
+		if (!$id) {
+			echo json_encode(['status' => 'error', 'message' => 'Ticket ID harus ada']);
+			return;
+		}
+
+		$id = $this->security->xss_clean($id);
+		$new_status = 'done';
+		$nik = $this->session->userdata('nik');
+		$name = $this->session->userdata('name');
+		$at = date('Y-m-d H:i:s');
+
+		$query = "UPDATE tickets SET 
+			status = ?, 
+			done_name = ?,
+			done_nik = ?,
+			done_at = ?
+		WHERE id = ?";
+		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
+
+		if ($result) {
+			echo json_encode(['status' => 'success', 'message' => 'Berhasil menyelesaikan ticket']);
+		} else {
+			echo json_encode(['status' => 'error', 'message' => 'Gagal menyelesaikan ticket.']);
+		}
+	}
+	
+	public function updateToReject()
+	{
+		$id = $this->input->post('id');
+
+		if (!$id) {
+			echo json_encode(['status' => 'error', 'message' => 'Ticket ID harus ada']);
+			return;
+		}
+
+		$id = $this->security->xss_clean($id);
+		$new_status = 'reject';
+		$nik = $this->session->userdata('nik');
+		$name = $this->session->userdata('name');
+		$at = date('Y-m-d H:i:s');
+
+		$query = "UPDATE tickets SET 
+			status = ?, 
+			reject_name = ?,
+			reject_nik = ?,
+			reject_at = ?
+		WHERE id = ?";
+		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
+
+		if ($result) {
+			echo json_encode(['status' => 'success', 'message' => 'Berhasil reject ticket']);
+		} else {
+			echo json_encode(['status' => 'error', 'message' => 'Gagal reject ticket.']);
 		}
 	}
 }

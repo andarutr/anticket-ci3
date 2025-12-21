@@ -60,6 +60,241 @@ $("#tableBacklog").DataTable({
     ]
 });
 
+$("#tableList").DataTable({
+    ordering: false,
+    ajax: {
+        type: "GET",
+        url: "/worker/ticket/getDataList"
+    },
+    columns: [
+        { 
+            data: "no_ticket",
+            render: function(data, type, row){
+                return `#${data}`;
+            }
+        },
+        { data: "system_name" },
+        { 
+            data: "category",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'system'){
+                    badge = `<span class="badge bg-info text-white">${data}</span>`
+                } else if(data == 'feature'){
+                    badge = `<span class="badge bg-primary text-white">${data}</span>`
+                } else if(data == 'bug'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                } else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "requestor_name" },
+        { 
+            data: "priority",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'high'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                }else if(data == 'medium'){
+                    badge = `<span class="badge bg-warning text-white">${data}</span>`
+                }else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "deadline" },
+        { data: "execute_at" },
+        { 
+            data: null,
+            render: function(data, type, row){
+                return `
+                    <span class="badge bg-success" onclick="viewTicket(${row.id})"><i class="bi bi-eye"></i></span>
+                    <span class="badge bg-primary text-white" onclick="inProgress(${row.id})">IN PROGRESS</span>
+                `;
+            }
+        },
+    ]
+});
+
+$("#tableInprogress").DataTable({
+    ordering: false,
+    ajax: {
+        type: "GET",
+        url: "/worker/ticket/getDataInProgress"
+    },
+    columns: [
+        { data: "execute_at" },
+        { 
+            data: "no_ticket",
+            render: function(data, type, row){
+                return `#${data}`;
+            }
+        },
+        { data: "system_name" },
+        { 
+            data: "category",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'system'){
+                    badge = `<span class="badge bg-info text-white">${data}</span>`
+                } else if(data == 'feature'){
+                    badge = `<span class="badge bg-primary text-white">${data}</span>`
+                } else if(data == 'bug'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                } else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "requestor_name" },
+        { 
+            data: "priority",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'high'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                }else if(data == 'medium'){
+                    badge = `<span class="badge bg-warning text-white">${data}</span>`
+                }else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "deadline" },
+        { 
+            data: null,
+            render: function(data, type, row){
+                return `
+                    <span class="badge bg-success" onclick="viewTicket(${row.id})"><i class="bi bi-eye"></i></span>
+                    <span class="badge bg-primary text-white" onclick="done(${row.id})">DONE</span>
+                    <span class="badge bg-danger text-white" onclick="reject(${row.id})">REJECT</span>
+                `;
+            }
+        },
+    ]
+});
+
+$("#tableDone").DataTable({
+    ordering: false,
+    ajax: {
+        type: "GET",
+        url: "/worker/ticket/getDataDone"
+    },
+    columns: [
+        { 
+            data: "no_ticket",
+            render: function(data, type, row){
+                return `#${data}`;
+            }
+        },
+        { data: "system_name" },
+        { 
+            data: "category",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'system'){
+                    badge = `<span class="badge bg-info text-white">${data}</span>`
+                } else if(data == 'feature'){
+                    badge = `<span class="badge bg-primary text-white">${data}</span>`
+                } else if(data == 'bug'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                } else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "requestor_name" },
+        { 
+            data: "priority",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'high'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                }else if(data == 'medium'){
+                    badge = `<span class="badge bg-warning text-white">${data}</span>`
+                }else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "deadline" },
+        { data: "done_at" }
+    ]
+});
+
+$("#tableReject").DataTable({
+    ordering: false,
+    ajax: {
+        type: "GET",
+        url: "/worker/ticket/getDataReject"
+    },
+    columns: [
+        { 
+            data: "no_ticket",
+            render: function(data, type, row){
+                return `#${data}`;
+            }
+        },
+        { data: "system_name" },
+        { 
+            data: "category",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'system'){
+                    badge = `<span class="badge bg-info text-white">${data}</span>`
+                } else if(data == 'feature'){
+                    badge = `<span class="badge bg-primary text-white">${data}</span>`
+                } else if(data == 'bug'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                } else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "requestor_name" },
+        { 
+            data: "priority",
+            render: function(data, type, row){
+                let badge = '';
+
+                if(data == 'high'){
+                    badge = `<span class="badge bg-danger text-white">${data}</span>`
+                }else if(data == 'medium'){
+                    badge = `<span class="badge bg-warning text-white">${data}</span>`
+                }else{
+                    badge = `<span class="badge bg-success text-white">${data}</span>`
+                }
+
+                return badge;
+            }
+        },
+        { data: "deadline" },
+        { data: "reject_at" }
+    ]
+});
+
 function viewTicket(ticketId) {
     const modal = new bootstrap.Modal(document.getElementById('viewModal'));
     modal.show();
@@ -168,6 +403,7 @@ function submitSchedule() {
                 const modal = $("#scheduleModal").modal("hide");
                 modal.hide();
                 $('#tableBacklog').DataTable().ajax.reload(null, false);
+                $('#tableList').DataTable().ajax.reload(null, false);
             } else {
                 Swal.fire('Gagal', 'Failed to update schedule: ' + (response.message || 'Unknown error.'), 'error');
             }
@@ -175,6 +411,114 @@ function submitSchedule() {
         error: function(xhr, status, error) {
             console.error('AJAX Error setting schedule:', error);
             Swal.fire('Gagal', 'Error network.', 'error');
+        }
+    });
+}
+
+function inProgress(ticketId) {
+    Swal.fire({
+        title: 'Yakin?',
+        text: "Yakin ingin mengerjakan ticket?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yakin!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/worker/ticket/updateToInProgress",
+                type: 'POST',
+                data: {
+                    id: ticketId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire('Success!', response.message, 'success');
+                        $('#tableList').DataTable().ajax.reload(null, false);
+                        $('#tableInprogress').DataTable().ajax.reload(null, false);
+                    } else {
+                        Swal.fire('Failed!', response.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'Error ketika update status.', 'error');
+                }
+            });
+        }
+    });
+}
+
+function done(ticketId) {
+    Swal.fire({
+        title: 'Yakin?',
+        text: "Yakin sudah menyelesaikan ticket?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yakin!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/worker/ticket/updateToDone",
+                type: 'POST',
+                data: {
+                    id: ticketId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire('Success!', response.message, 'success');
+                        $('#tableInprogress').DataTable().ajax.reload(null, false);
+                        $('#tableDone').DataTable().ajax.reload(null, false);
+                    } else {
+                        Swal.fire('Failed!', response.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'Error ketika update status.', 'error');
+                }
+            });
+        }
+    });
+}
+
+function reject(ticketId) {
+    Swal.fire({
+        title: 'Yakin?',
+        text: "Yakin reject ticket?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yakin!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/worker/ticket/updateToReject",
+                type: 'POST',
+                data: {
+                    id: ticketId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire('Success!', response.message, 'success');
+                        $('#tableInprogress').DataTable().ajax.reload(null, false);
+                        $('#tableReject').DataTable().ajax.reload(null, false);
+                    } else {
+                        Swal.fire('Failed!', response.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'Error ketika update status.', 'error');
+                }
+            });
         }
     });
 }

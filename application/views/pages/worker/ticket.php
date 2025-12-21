@@ -65,6 +65,7 @@
                                                         <th class="text-white">Requestor</th>
                                                         <th class="text-white">Priority</th>
                                                         <th class="text-white">Deadline</th>
+                                                        <th class="text-white">Execute</th>
                                                         <th class="text-white">Action</th>
                                                     </tr>
                                                 </thead>
@@ -83,6 +84,7 @@
                                             <table class="table" id="tableInprogress">
                                                 <thead class="bg-primary">
                                                     <tr>
+                                                        <th class="text-white">Execute</th>
                                                         <th class="text-white">No Ticket</th>
                                                         <th class="text-white">System</th>
                                                         <th class="text-white">Type</th>
@@ -113,7 +115,7 @@
                                                         <th class="text-white">Requestor</th>
                                                         <th class="text-white">Priority</th>
                                                         <th class="text-white">Deadline</th>
-                                                        <th class="text-white">Action</th>
+                                                        <th class="text-white">Done</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -137,7 +139,7 @@
                                                         <th class="text-white">Requestor</th>
                                                         <th class="text-white">Priority</th>
                                                         <th class="text-white">Deadline</th>
-                                                        <th class="text-white">Action</th>
+                                                        <th class="text-white">Reject</th>
                                                     </tr>
                                                 </thead>
                                             </table>
