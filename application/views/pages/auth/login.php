@@ -21,7 +21,7 @@
 					
 					<div class="card-body">
 						<div class="mb-3">
-							<input type="number" class="form-control" id="nik" placeholder="Masukkan NIK Karyawan">
+							<input type="number" class="form-control" id="nik" placeholder="Masukkan NIK Karyawan" autocomplete="off">
 						</div>
 						<div class="mb-3">
 							<input type="password" class="form-control" id="password" placeholder="Masukkan Password">
