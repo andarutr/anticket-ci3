@@ -21,6 +21,11 @@ function submit() {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         let role = res.role;
+
+                        if(role == 'blocked'){
+                            return window.location.href = "/blocked";
+                        } 
+
                         window.location.href = "/"+role+"/dashboard";
                     }
                 });

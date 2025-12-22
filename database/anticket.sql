@@ -30,7 +30,7 @@ BEGIN
 	   nik VARCHAR(25) NOT NULL UNIQUE,
 	   email VARCHAR(50) NOT NULL UNIQUE,
 	   password VARCHAR(255) NOT NULL,
-	   role ENUM('user','worker', 'admin', 'supervisor', 'root') NOT NULL DEFAULT 'worker',
+	   role ENUM('user','worker', 'admin', 'supervisor', 'root', 'blocked') NOT NULL DEFAULT 'worker',
 	   id_chat_telegram VARCHAR(255) NULL,
 	   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
