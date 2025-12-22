@@ -42,4 +42,5 @@ Penjelasan:
 - User closed ticket.
 - Analytic Perform Worker.
 - Chatting With Worker.
-- Management User.
+- Management User (Reset Pwd, and Block Account).
+- Update Profile (name, email, nik, password).

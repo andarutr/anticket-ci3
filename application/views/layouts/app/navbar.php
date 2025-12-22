@@ -10,10 +10,16 @@
               <input type="text" class="form-control" placeholder="Type here...">
             </div>
           </div>
-          <ul class="navbar-nav  justify-content-end">
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="<?= site_url('profile'); ?>" class="mt-3 btn btn-success">
+                <i class="bi bi-person me-sm-1"></i>
+                <span class="d-sm-inline d-none">PROFILE</span>
+              </a>
+            </li>&nbsp;&nbsp;
             <li class="nav-item d-flex align-items-center">
               <a href="<?= site_url('auth/logout'); ?>" class="mt-3 btn btn-danger">
-                <i class="fa fa-user me-sm-1"></i>
+                <i class="bi bi-arrow-bar-right me-sm-1"></i>
                 <span class="d-sm-inline d-none">LOGOUT</span>
               </a>
             </li>
