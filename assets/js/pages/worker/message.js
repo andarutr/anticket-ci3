@@ -3,7 +3,7 @@ const currentUserName = $("#nameUser").text();
 function showMessageDetail(id_ticket, no_ticket, developer_name, system_name){
     $.ajax({
         type: "GET",
-        url: "/user/chat/message/getChatDetail",
+        url: "/worker/chat/message/getChatDetail",
         data: {
             id: id_ticket
         },
@@ -62,7 +62,7 @@ function submitMessage(id_ticket, no_ticket, developer_name, system_name){
 
     $.ajax({
         type: "POST",
-        url: "/user/chat/message/send",
+        url: "/worker/chat/message/send",
         data: {
             id: id_ticket,
             message: message

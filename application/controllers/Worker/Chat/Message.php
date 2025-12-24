@@ -42,19 +42,21 @@ class Message extends CI_Controller {
             t.id as id_ticket,
             t.no_ticket,
             t.developer_name,
+            t.developer_nik,
+            t.requestor_name,
             t.updated_at,
             s.id as id_system,
             s.name as system_name
         FROM tickets t
         JOIN systems s ON t.system_id = s.id
-        WHERE t.requestor_nik = ? AND t.developer_name IS NOT NULL";
+        WHERE t.developer_nik = ?";
 
         $data['tickets'] = $this->db->query($query, [$nik])->result();
 
 		$this->load->view('layouts/app/header', $data);
 		$this->load->view('layouts/app/sidebar');
 		$this->load->view('layouts/app/navbar');
-		$this->load->view('pages/user/chat/message');
+		$this->load->view('pages/worker/chat/message');
 		$this->load->view('layouts/app/footer');
 	}
 
