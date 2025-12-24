@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ticket extends CI_Controller {
+    public function __construct() {
+		parent::__construct();
+		cek_login($this);
+	}
+    
 	public function getDataBacklog()
     {
 		$nik = $this->session->userdata('nik');

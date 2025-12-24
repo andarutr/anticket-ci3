@@ -7,6 +7,8 @@ class ReportBug extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(['url', 'form']);
 		$this->load->library('upload');
+        cek_login($this);
+
 	}
     
 	public function index()
