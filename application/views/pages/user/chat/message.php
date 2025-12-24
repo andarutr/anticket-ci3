@@ -33,6 +33,7 @@
 
                           <div id="chat-placeholder" class="text-center py-5">
                             <p class="text-muted">Pilih obrolan untuk memulai percakapan</p>
+                            <p id="nameUser"><?= $nameuser ?></p>
                           </div>
                         </div>
                       </div>

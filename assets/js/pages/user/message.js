@@ -1,3 +1,5 @@
+const currentUserName = $("#nameUser").text();
+
 function showMessageDetail(id_ticket, no_ticket, developer_name, system_name){
     $.ajax({
         type: "GET",
@@ -6,37 +8,72 @@ function showMessageDetail(id_ticket, no_ticket, developer_name, system_name){
             id: id_ticket
         },
         success: function(res){
-            console.log(res);
-            $("#containerChatDetail").empty();
-            $("#containerChatDetail").append(`
+            let html = `
                 <div id="detail-chat-1" class="chat-detail-content">
                     <div class="chat-header mb-3">
                         <h5 id="chat-ticket-title-1">&nbsp;&nbsp;&nbsp;#${no_ticket} - ${system_name}</h5>
                     </div>
+
                     <div class="chat-messages p-3 border rounded mb-3" style="height: 400px; overflow-y: auto;">
-                        <div class="message mb-2">
+            `;
+
+            res.forEach(function(item, index){
+                let badge = '';
+                console.log(item.name_sender);
+                console.log(currentUserName);
+                if(item.name_sender != currentUserName){
+                    badge = 'bg-light text-dark';
+                }else{
+                    badge = 'bg-primary text-white';
+                }
+                
+                html += `
+                    <div class="message mb-2">
                         <div class="d-flex justify-content-start">
-                            <div class="bg-primary text-white p-2 rounded">
-                            <small>Halo, saya ingin menanyakan tentang fitur absensi.</small><br>
-                            <small>User - 24/12/2025 10:05</small>
+                            <div class="${badge} p-2 rounded">
+                                <small>${item.message}</small><br>
+                                <small>${item.name_sender || 'Unknown'} - ${item.created_at}</small>
                             </div>
                         </div>
-                        </div>
-                        <div class="message mb-2">
-                        <div class="d-flex justify-content-end">
-                            <div class="bg-light p-2 rounded">
-                            <small>Baik, fitur absensi saat ini sedang dalam pengembangan.</small><br>
-                            <small>Andaru Triadi - 24/12/2025 10:15</small>
-                            </div>
-                        </div>
-                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="message-input-1" placeholder="Ketik pesan...">
-                        <button class="btn btn-primary" id="send-btn-1">Kirim</button>
+                        <input type="text" class="form-control" id="message" placeholder="Ketik pesan...">
+                        <button class="btn btn-primary" id="send-btn-1" onClick="submitMessage('${id_ticket}', '${no_ticket}', '${developer_name}', '${system_name}')">Kirim</button>
                     </div>
                 </div>
-            `);
+            `;
+            $("#containerChatDetail").empty();
+            $("#containerChatDetail").append(html);
+        }
+    })
+}
+
+function submitMessage(id_ticket, no_ticket, developer_name, system_name){
+    let message = $("#message").val();
+    if(message == '' || message == null){
+        Swal.fire("info", "Pesan harus diisi!", "info");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/user/chat/message/send",
+        data: {
+            id: id_ticket,
+            message: message
+        },
+        success: function(res){
+            $("#message").val('');
+            showMessageDetail(id_ticket, no_ticket, developer_name, system_name);
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", error);
+            Swal.fire("Error", "Terjadi kesalahan jaringan.", "error");
         }
     })
 }
