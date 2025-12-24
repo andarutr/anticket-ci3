@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link id="pagestyle" href="<?= base_url('assets/css/argon-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />
   <script src="<?= base_url('assets/js/jquery.min.js'); ?>"></script>
@@ -62,6 +61,22 @@
       min-height: 200px;
       max-height: 400px; 
       overflow-y: auto;
+  }
+
+  /* Wajib agar sidebar tidak terpotong */
+  .sidenav {
+    height: 100vh !important;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  /* Wajib agar sidebar tidak terpotong */
+  .sidenav .navbar-collapse {
+    height: calc(100vh - 80px) !important;
+    overflow-y: auto;
   }
   </style>
 </head>
