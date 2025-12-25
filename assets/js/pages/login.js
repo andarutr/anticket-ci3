@@ -1,13 +1,21 @@
+function refreshCaptcha() {
+    $.get('/auth/refresh_captcha', function(data) {
+        $('#captcha_container').html(data);
+    });
+}
+
 function submit() {
     let nik = $("#nik").val();
     let password = $("#password").val();
+    let captcha = $("#captcha").val();
 
     $.ajax({
         type: "POST",
         url: "/auth/b_login",
         data: {
             nik: nik,
-            password: password
+            password: password,
+            captcha: captcha
         },
         success: function(response) {
             let res = JSON.parse(response);

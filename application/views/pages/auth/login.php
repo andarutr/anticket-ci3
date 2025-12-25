@@ -26,6 +26,14 @@
 						<div class="mb-3">
 							<input type="password" class="form-control" id="password" placeholder="Masukkan Password">
 						</div>
+						<div class="mb-3">
+							<label class="form-label">Masukkan Kode Captcha</label><br>
+							<div id="captcha_container">
+								<?php echo $captcha['image']; ?>
+							</div>
+							<button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="refreshCaptcha()">Refresh</button>
+							<input type="text" class="form-control mt-2" id="captcha" name="captcha" placeholder="Kode Captcha" autocomplete="off">
+						</div>
 						<div class="text-center">
 							<button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onClick="submit()">Login</button>
 						</div>
