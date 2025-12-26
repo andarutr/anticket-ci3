@@ -90,6 +90,16 @@ class ReportBug extends CI_Controller {
         ]);
 
         if ($result_ticket) {
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Berhasil Report Bug!');
+            $this->email->message("
+                <p>Bila ticket anda sudah di approval, anda akan mendapatkan info melalui email. Terimakasih.</p>
+                <p>Salam,<br><em>Anticket</em></p>
+            ");
+
+            $this->email->send();
+
             $ticket_id = $this->db->insert_id();
 
             if (!empty($uploaded_files)) {

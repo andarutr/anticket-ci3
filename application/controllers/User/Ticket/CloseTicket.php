@@ -105,6 +105,16 @@ class CloseTicket extends CI_Controller {
         $result = $this->db->query($query, [$name, $nik, $at, $id]);
 
         if ($result) {
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Berhasil Close Ticket!');
+            $this->email->message("
+                <p>Anda baru saja closing ticket. Terimakasih sudah menggunakan aplikasi anticket ya...</p>
+                <p>Salam,<br><em>Anticket</em></p>
+            ");
+
+            $this->email->send();
+
 			echo json_encode(['status' => 'success', 'message' => 'Berhasil close ticket']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Gagal close ticket.']);

@@ -59,6 +59,16 @@ class RequestMeeting extends CI_Controller {
         ]);
 
         if ($result_ticket) {
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Berhasil Request Meeting!');
+            $this->email->message("
+                <p>Bila ticket anda sudah di approval, anda akan mendapatkan info melalui email. Terimakasih.</p>
+                <p>Salam,<br><em>Anticket</em></p>
+            ");
+
+            $this->email->send();
+
             echo json_encode(['status' => 'success', 'message' => 'Laporan bug berhasil dikirim']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Gagal menyimpan data ticket']);
