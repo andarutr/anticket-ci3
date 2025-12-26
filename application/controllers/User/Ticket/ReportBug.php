@@ -62,7 +62,7 @@ class ReportBug extends CI_Controller {
 
         $user_id = $this->session->userdata('user_id');
 
-        $user_query = $this->db->query("SELECT name, nik FROM users WHERE id = ?", [$user_id])->row_array();
+        $user_query = $this->db->query("SELECT name, nik, email FROM users WHERE id = ?", [$user_id])->row_array();
         if (!$user_query) {
             echo json_encode(['status' => 'error', 'message' => 'Data pengguna tidak ditemukan']);
             return;
@@ -70,6 +70,7 @@ class ReportBug extends CI_Controller {
 
         $requestor_name = $user_query['name'];
         $requestor_nik = $user_query['nik'];
+        $requestor_email = $user_query['email'];
 
         $date_part = date('ymd');
         $last_ticket = $this->db->query("SELECT MAX(id) as last_id FROM tickets")->row()->last_id;
@@ -90,13 +91,16 @@ class ReportBug extends CI_Controller {
         ]);
 
         if ($result_ticket) {
+            $email_data = [
+                'requestor_name' => $requestor_name,
+            ];
+            
+            $message = $this->load->view('emails/report_bug_success', $email_data, TRUE);
+
             $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
-            $this->email->to($email); 
+            $this->email->to($requestor_email); 
             $this->email->subject('Berhasil Report Bug!');
-            $this->email->message("
-                <p>Bila ticket anda sudah di approval, anda akan mendapatkan info melalui email. Terimakasih.</p>
-                <p>Salam,<br><em>Anticket</em></p>
-            ");
+            $this->email->message($message);
 
             $this->email->send();
 

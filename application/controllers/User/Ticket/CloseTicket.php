@@ -91,27 +91,33 @@ class CloseTicket extends CI_Controller {
     {
         $name = $this->session->userdata('name');
         $nik = $this->session->userdata('nik');
+        $email = $this->session->userdata('email');
         $at = date("Y-m-d H:i:s");
-
+        $status = 'closed';
+        
         $query = "
         UPDATE tickets
         SET 
             closed_name = ?,
 			closed_nik = ?,
-			closed_at = ?
+			closed_at = ?,
+            status = ? 
         WHERE id = ?
         ";
 
-        $result = $this->db->query($query, [$name, $nik, $at, $id]);
+        $result = $this->db->query($query, [$name, $nik, $at, $status, $id]);
 
         if ($result) {
+            $email_data = [
+                'name' => $name,
+            ];
+            
+            $message = $this->load->view('emails/close_ticket_success', $email_data, TRUE);
+
             $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
             $this->email->to($email); 
             $this->email->subject('Berhasil Close Ticket!');
-            $this->email->message("
-                <p>Anda baru saja closing ticket. Terimakasih sudah menggunakan aplikasi anticket ya...</p>
-                <p>Salam,<br><em>Anticket</em></p>
-            ");
+            $this->email->message($message);
 
             $this->email->send();
 

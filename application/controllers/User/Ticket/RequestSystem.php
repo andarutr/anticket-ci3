@@ -71,7 +71,7 @@ class RequestSystem extends CI_Controller {
         $requestor_name = $user_query['name'];
         $requestor_nik = $user_query['nik'];
 
-        $query_user = "SELECT nik AS pic_nik FROM users WHERE name = ?";
+        $query_user = "SELECT email, nik AS pic_nik FROM users WHERE name = ?";
         $user_data = $this->db->query($query_user, [$pic_name])->row_array();
 
         if (!$user_data) {
@@ -79,6 +79,7 @@ class RequestSystem extends CI_Controller {
             return;
         }
 
+        $pic_email = $user_data['email'];
         $pic_nik = $user_data['pic_nik'];
 
         $query_systems = "INSERT INTO systems (user_id, name, status, dept, pic_name, pic_nik) VALUES (?, ?, ?, ?, ?, ?)";
@@ -92,13 +93,17 @@ class RequestSystem extends CI_Controller {
         ]);
 
         if ($result) {
+            $email_data = [
+                'pic_name' => $pic_name,
+                'judul' => $judul,
+                'requestor_name' => $requestor_name
+            ];
+            $message = $this->load->view('emails/request_system_success', $email_data, TRUE);
+
             $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
-            $this->email->to($email); 
+            $this->email->to($pic_email);
             $this->email->subject('Berhasil Request System!');
-            $this->email->message("
-                <p>Bila ticket anda sudah di approval, anda akan mendapatkan info melalui email. Terimakasih.</p>
-                <p>Salam,<br><em>Anticket</em></p>
-            ");
+            $this->email->message($message);
 
             $this->email->send();
             
