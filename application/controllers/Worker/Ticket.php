@@ -236,6 +236,42 @@ class Ticket extends CI_Controller {
 		$result = $this->db->query($query, [$execution_date, $status, $id]);
 
 		if ($result) {
+            $query = "
+                SELECT t.id, t.requestor_nik, t.developer_name, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+            $developer_name = $ticket_data['developer_name'];
+
+            $execution_timestamp = strtotime($execution_date);
+
+            $email_data = [
+                'name' => $name,
+                'developer_name' => $developer_name,
+                'execution_date' => $execution_timestamp,
+            ];
+            
+            $message = $this->load->view('emails/scheduled_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket Schedule Execution!');
+            $this->email->message($message);
+
+            $this->email->send();
+
 			echo json_encode(['status' => 'success', 'message' => 'Schedule updated successfully.']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Failed to update schedule.']);
@@ -266,6 +302,39 @@ class Ticket extends CI_Controller {
 		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
 
 		if ($result) {
+            $query = "
+                SELECT t.id, t.requestor_nik, t.developer_name, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+            $developer_name = $ticket_data['developer_name'];
+
+            $email_data = [
+                'name' => $name,
+                'developer_name' => $developer_name
+            ];
+            
+            $message = $this->load->view('emails/inprogress_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket In Progress!');
+            $this->email->message($message);
+
+            $this->email->send();
+
 			echo json_encode(['status' => 'success', 'message' => 'Berhasil update status ticket']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Gagal update status ticket.']);
@@ -296,6 +365,39 @@ class Ticket extends CI_Controller {
 		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $id]);
 
 		if ($result) {
+            $query = "
+                SELECT t.id, t.requestor_nik, t.developer_name, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+            $developer_name = $ticket_data['developer_name'];
+
+            $email_data = [
+                'name' => $name,
+                'developer_name' => $developer_name
+            ];
+            
+            $message = $this->load->view('emails/done_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket Done!');
+            $this->email->message($message);
+
+            $this->email->send();
+
 			echo json_encode(['status' => 'success', 'message' => 'Berhasil menyelesaikan ticket']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Gagal menyelesaikan ticket.']);
@@ -328,6 +430,39 @@ class Ticket extends CI_Controller {
 		$result = $this->db->query($query, [$new_status, $name, $nik, $at, $reason, $id]);
 
 		if ($result) {
+            $query = "
+                SELECT t.id, t.requestor_nik, t.developer_name, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+            $developer_name = $ticket_data['developer_name'];
+
+            $email_data = [
+                'name' => $name,
+                'reason' => $reason
+            ];
+            
+            $message = $this->load->view('emails/reject_from_worker_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket ditolak!');
+            $this->email->message($message);
+
+            $this->email->send();
+
 			echo json_encode(['status' => 'success', 'message' => 'Berhasil reject ticket']);
 		} else {
 			echo json_encode(['status' => 'error', 'message' => 'Gagal reject ticket.']);

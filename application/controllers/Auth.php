@@ -39,16 +39,17 @@ class Auth extends CI_Controller {
                 $result = $this->db->query($query, [$name, $email, $nik, $password]);
                 
                 if ($result) {
+                    $email_data = [
+                        'name' => $name,
+                        'email' => $email,
+                    ];
+
+                    $message = $this->load->view('emails/register_ticket_success', $email_data, TRUE);
+
                     $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
                     $this->email->to($email); 
                     $this->email->subject('Selamat Datang di Anticket!');
-                    $this->email->message("
-                        <h2>Selamat Datang, " . htmlspecialchars($name) . "!</h2>
-                        <p>Terima kasih telah mendaftar di aplikasi kami. Akun Anda telah berhasil dibuat.</p>
-                        <p>Email Anda: <strong>" . htmlspecialchars($email) . "</strong></p>
-                        <p>Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami.</p>
-                        <p>Salam,<br><em>Anticket</em></p>
-                    ");
+                    $this->email->message($message);
 
                     $this->email->send();
 

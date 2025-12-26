@@ -1,5 +1,5 @@
 # anticket-ci3
-Ticket Management System Menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL. Status: In Progress...
+Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket worker. Aplikasi ini dibuat menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL. Status: Improvement
 
 ## ERD
 <img src="document/ERD Anticket.jpg" width="450">
@@ -13,7 +13,7 @@ Penjelasan:
 - Admin melakukan mapping project baru kepada worker terkait.
 - Setelah di mapping oleh admin, ticket akan masuk di backlog worker.
 - Worker melakukan set schedule dan mengerjakan ticket sesuai dengan schedule yang telah ditetapkan.
-- Ketika ticket sedang diproses, sudah selesai atau di reject maka otomatis user akan mendapatkan pemberitahuan melalui gmail.
+- Ketika ticket sedang diproses, sudah selesai atau di reject maka otomatis user akan mendapatkan pemberitahuan melalui email (mailtrap testing).
 - Ticket dinyatakan selesai bila user sudah melakukan closing ticket.
 
 ## Role
@@ -31,16 +31,21 @@ Penjelasan:
 - Sweet Alert 2
 - QuillJS
 - Select2
+- Captcha
 
 ## Feature
-- Monitoring Ticket.
-- Create Ticket (Request System, Request Feature, Report Bug, Request Meeting).
-- Approval Ticket.
-- Set Deadline & Priority Ticket.
-- Backlog Ticket.
-- Execution Ticket (In Progress, Done, Reject).
-- User closed ticket.
-- Analytic Perform Worker.
-- Chatting With Worker.
-- Management User (Reset Pwd, and Block Account).
-- Update Profile (name, email, nik, password).
+- [x] Monitoring Ticket.
+- [x] Create Ticket (Request System, Request Feature, Report Bug, Request Meeting).
+- [x] Approval Ticket.
+- [x] Set Deadline & Priority Ticket.
+- [x] Assign Ticket.
+- [x] Backlog Ticket.
+- [x] Execution Ticket (In Progress, Done, Reject).
+- [x] User closed ticket.
+- [x] Chatting With Worker or User.
+- [x] Management User (Reset Pwd, and Block Account).
+- [x] Update Profile (name, email, nik, password).
+
+## Lainnya
+- [x] Full SQL Native
+- [ ] Implementasi SRP (Single Responsibility Principle)

@@ -108,6 +108,22 @@ class CloseTicket extends CI_Controller {
         $result = $this->db->query($query, [$name, $nik, $at, $status, $id]);
 
         if ($result) {
+            $query = "
+                SELECT t.id, t.requestor_nik, t.developer_name, t.developer_nik, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.developer_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+
+            $email_developer = $ticket_data['email'];
+
             $email_data = [
                 'name' => $name,
             ];
@@ -115,7 +131,7 @@ class CloseTicket extends CI_Controller {
             $message = $this->load->view('emails/close_ticket_success', $email_data, TRUE);
 
             $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
-            $this->email->to($email); 
+            $this->email->to($email_developer.', '.$email_developer); 
             $this->email->subject('Berhasil Close Ticket!');
             $this->email->message($message);
 

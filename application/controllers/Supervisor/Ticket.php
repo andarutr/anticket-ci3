@@ -75,7 +75,38 @@ class Ticket extends CI_Controller {
         $update_result = $this->db->query($update_query);
 
         if ($update_result && $this->db->affected_rows() > 0) {
-             echo json_encode(['status' => 'success', 'message' => 'Berhasil approve ticket.']);
+            $query = "
+                SELECT t.id, t.requestor_nik, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$id])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+
+            $email_data = [
+                'name' => $name,
+            ];
+            
+            $message = $this->load->view('emails/approve_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket diapprove!');
+            $this->email->message($message);
+
+            $this->email->send();
+
+            echo json_encode(['status' => 'success', 'message' => 'Berhasil approve ticket.']);
         } else {
              echo json_encode(['status' => 'error', 'message' => 'Error.']);
         }
@@ -85,16 +116,47 @@ class Ticket extends CI_Controller {
     {
         $id = $this->security->xss_clean($id);
         if (!is_numeric($id)) {
-            show_404(); 
+            show_404();
         }
 
-        $this->db->where('id', $id);
-        $this->db->update('tickets', ['status' => 'reject']);
+        $query = "
+            SELECT t.id, t.requestor_nik, u.name, u.email, u.nik
+            FROM tickets t
+            JOIN users u ON t.requestor_nik = u.nik
+            WHERE t.id = ?
+        ";
 
-        if ($this->db->affected_rows() > 0) {
+        $ticket_data = $this->db->query($query, [$id])->row_array();
+
+        if (!$ticket_data) {
+            echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+            return;
+        }
+
+        $update_query = "UPDATE tickets SET status = 'reject' WHERE id = ?";
+        $result = $this->db->query($update_query, [$id]);
+
+        if ($result) {
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+
+            $email_data = [
+                'name' => $name,
+            ];
+            
+            $message = $this->load->view('emails/reject_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket ditolak!');
+            $this->email->message($message);
+
+            $this->email->send();
+
             echo json_encode(['status' => 'success', 'message' => 'Berhasil reject ticket.']);
         } else {
-             echo json_encode(['status' => 'error', 'message' => 'Gagal reject ticket.']);
+            echo json_encode(['status' => 'error', 'message' => 'Gagal reject ticket.']);
         }
     }
 

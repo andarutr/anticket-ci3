@@ -110,9 +110,6 @@ class MappingTask extends CI_Controller {
         $ticketId = $this->input->post('ticket_id', TRUE);
         $userId = $this->input->post('user_id', TRUE);
 
-        $ticketId = $this->db->escape($ticketId);
-        $userId = $this->db->escape($userId);
-
         $user_query_str = "
             SELECT name, nik 
             FROM users
@@ -143,6 +140,38 @@ class MappingTask extends CI_Controller {
         $update_result = $this->db->query($update_query_str);
 
         if ($update_result && $this->db->affected_rows() > 0) {
+            $query = "
+                SELECT t.id, t.requestor_nik, u.name, u.email, u.nik
+                FROM tickets t
+                JOIN users u ON t.requestor_nik = u.nik
+                WHERE t.id = ?
+            ";
+
+            $ticket_data = $this->db->query($query, [$ticketId])->row_array();
+
+            if (!$ticket_data) {
+                echo json_encode(['status' => 'error', 'message' => 'Ticket tidak ditemukan.']);
+                return;
+            }
+            
+            $requestor_nik = $ticket_data['requestor_nik'];
+            $email = $ticket_data['email'];
+            $name = $ticket_data['name'];
+
+            $email_data = [
+                'name' => $name,
+                'developer_name' => $developerName,
+            ];
+            
+            $message = $this->load->view('emails/assigned_ticket_success', $email_data, TRUE);
+
+            $this->email->from('andarutr@anticket.test', 'Andaru Anticket');
+            $this->email->to($email); 
+            $this->email->subject('Ticket Berhasil di Assign!');
+            $this->email->message($message);
+
+            $this->email->send();
+
             echo json_encode(['status' => 'success', 'message' => 'Berhasil assign task.']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Gagal assign task.']);
