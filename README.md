@@ -1,5 +1,13 @@
-# anticket-ci3
-Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket worker. Aplikasi ini dibuat menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL. Status: Improvement
+# Anticket CI3
+Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket worker. Aplikasi ini dibuat menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL.
+
+## Stack
+<div align="left">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" height="40" alt="Bootstrap" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" height="40" alt="jQuery" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg" height="40" alt="CodeIgniter" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="40" alt="MySQL" />
+</div>
 
 ## ERD
 <img src="document/ERD Anticket.jpg" width="450">
