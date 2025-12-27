@@ -1,5 +1,5 @@
 # anticket-ci3
-Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket worker. Aplikasi ini dibuat menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL. Status: Improvement
+Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket worker. Aplikasi ini dibuat menggunakan Codeigniter 3, Bootstrap, jQuery, dan MySQL.
 
 ## ERD
 <img src="document/ERD Anticket.jpg" width="450">
@@ -7,14 +7,17 @@ Anticket adalah Ticket Management System yang dikhususkan untuk manajemen ticket
 ## Flowchart
 <img src="document/Flowchart Anticket.jpg" width="450">
 Penjelasan:
-- User melakukan pembuatan ticket (request system / request feature / report bug / meeting).
-- Supervisor melakukan diskusi bersama manager dan worker atau stakeholder terkait.
-- Supervisor melakukan approval atau reject.
-- Admin melakukan mapping project baru kepada worker terkait.
-- Setelah di mapping oleh admin, ticket akan masuk di backlog worker.
-- Worker melakukan set schedule dan mengerjakan ticket sesuai dengan schedule yang telah ditetapkan.
-- Ketika ticket sedang diproses, sudah selesai atau di reject maka otomatis user akan mendapatkan pemberitahuan melalui email (mailtrap testing).
-- Ticket dinyatakan selesai bila user sudah melakukan closing ticket.
+<ul>
+	<li>User melakukan pembuatan ticket (request system / request feature / report bug / meeting).</li>
+	<li>Supervisor melakukan diskusi bersama manager dan worker atau stakeholder terkait.</li>
+	<li>Supervisor melakukan set deadline, priority, approval atau reject.</li>
+	<li>Admin melakukan assign project kepada worker terkait.</li>
+	<li>Setelah di mapping oleh admin, ticket akan masuk di backlog worker.</li>
+	<li>Worker melakukan set schedule dan mengerjakan ticket sesuai dengan schedule yang telah ditetapkan.</li>
+	<li>Ketika ticket sedang diproses, sudah selesai atau di reject maka otomatis user akan mendapatkan pemberitahuan melalui email (mailtrap testing).</li>
+	<li>Ticket dinyatakan selesai bila user sudah melakukan closing ticket.</li>
+	<li>Akun yg memiliki role "Root" dapat melakukan reset password (default: anticket123) dan memblokir akun.</li>
+</ul>
 
 ## Role
 1. Root
