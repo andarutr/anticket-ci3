@@ -118,19 +118,19 @@ CREATE PROCEDURE `seedUser`()
 BEGIN
 
 	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
-	VALUES ('Root', 12345, 'root@example.com', 'root', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	VALUES ('Wilcox', 12345, 'wilcox@emyu.test', 'root', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 
 	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
-	VALUES ('Worker', 67891, 'worker@example.com', 'worker', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	VALUES ('Andaru', 67891, 'andaru@emyu.test', 'worker', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 
 	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
-	VALUES ('Admin', 78910, 'admin@example.com', 'admin', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	VALUES ('Jason', 78910, 'jason@emyu.test', 'admin', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
 	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
-	VALUES ('Supervisor', 89101, 'supervisor@example.com', 'supervisor', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	VALUES ('Amorim', 89101, 'amorim@emyu.test', 'supervisor', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
 	INSERT INTO users (name, nik, email, role, password, created_at, updated_at)
-	VALUES ('User', 91011, 'user@example.com', 'user', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
+	VALUES ('Brian', 91011, 'brian@emyu.test', 'user', '$2a$12$wdoEDXA7bol1FXBHcQS3X.bGFl3Iz6zob8edEpdIGkJvL3f9IvD6m', NOW(), NOW());
 	
 END//
 DELIMITER ;

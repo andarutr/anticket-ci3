@@ -18,9 +18,42 @@ Penjelasan:
 
 ## Role
 1. Root
-2. Worker
-3. Admin
-4. Supervisor
+2. User
+3. Supervisor
+4. Admin
+5. Worker
+
+## Account
+
+### Root
+- Nama: Wilcox
+- Email: wilcox@emyu.test
+- Nik: 12345
+- Password: anticket123
+
+### User
+- Nama: Brian
+- Email: brian@emyu.test
+- Nik: 91011
+- Password: anticket123
+
+### Supervisor
+- Nama: Amorim
+- Email: amorim@emyu.test
+- Nik: 891012
+- Password: anticket123
+
+### Admin
+- Nama: Jason
+- Email: jason@emyu.test
+- Nik: 78910
+- Password: anticket123
+
+### Worker
+- Nama: Andaru
+- Email: andaru@emyu.test
+- Nik: 67891
+- Password: anticket123
 
 ## Config
 - Import SQL file yang terletak di folder database.
@@ -45,7 +78,4 @@ Penjelasan:
 - [x] Chatting With Worker or User.
 - [x] Management User (Reset Pwd, and Block Account).
 - [x] Update Profile (name, email, nik, password).
-
-## Lainnya
 - [x] Full SQL Native
-- [ ] Implementasi SRP (Single Responsibility Principle)
